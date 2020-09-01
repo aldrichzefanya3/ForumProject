@@ -18,7 +18,7 @@ class RegisterController extends Controller
     public function store(Request $request){
       
         $validator=Validator::make($input=$request->except('_token','REGISTER'),['username' => 'required|min:4|max:25',
-                                    'email' => 'required|email',
+                                    'email' => 'required|email|unique:registers',
                                     'phone' => 'required|numeric',
                                     'password'=>'required|min:8|max:20',
                                     'confirmpassword'=>'required|same:password',
@@ -52,11 +52,13 @@ class RegisterController extends Controller
             if(Auth::attempt($userdata)){
                 return Redirect::to('');
             }else{
-                return Redirect::to('signin');
+                return redirect()->back()->with('msg','Login Failed');
+                
             }
                 
         }
     }
+    
 }
 
 

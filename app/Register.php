@@ -8,7 +8,7 @@ use Hash;
 
 class Register extends Authenticatable
 {
-    protected $table='register_users';
+    protected $table='registers';
      
 
     

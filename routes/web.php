@@ -14,6 +14,10 @@ Route::get('/', function () {
     return view('home');
     
 });
+Route::get('/termsprivacy', function () {
+    return view('termsprivacy');
+    
+});
 Route::get('/signup', function () {
     return view('signup');
     
@@ -24,7 +28,9 @@ Route::get('/signin', function () {
     
 });
 
-Route::get('/events','EventController@index');
+
+
+Route::resource('/forums','ForumController');
 Route::get('/register_action','RegisterController@index');
 Route::post('/register_action','RegisterController@store');
 
@@ -33,5 +39,5 @@ Route::get('/logout', function () {
     return Redirect::to('');
 })->middleware("auth");
 Route::post('login_check','RegisterController@login');
-
+Route::post('/forums/comments','CommentController@addComment');
     
